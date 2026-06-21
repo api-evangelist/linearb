@@ -1,0 +1,259 @@
+{
+  "info": {
+    "_postman_id": "b1f2a3c4-5d6e-47f8-9a0b-1c2d3e4f5a6b",
+    "name": "LinearB Public API",
+    "description": "The LinearB public REST API for software engineering intelligence: deployments, incidents, measurements, teams, and services. Authenticated with an API token in the x-api-key header.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "x-api-key", "type": "string" },
+      { "key": "value", "value": "{{apiKey}}", "type": "string" },
+      { "key": "in", "value": "header", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://public-api.linearb.io", "type": "string" },
+    { "key": "apiKey", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Deployments",
+      "item": [
+        {
+          "name": "Report a deployment.",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/deployments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "deployments"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repo_url\": \"<string>\",\n  \"ref_name\": \"<string>\",\n  \"timestamp\": \"<date-time>\",\n  \"stage\": \"<string>\",\n  \"services\": []\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Reports a deployment so LinearB can calculate deployment frequency and lead time."
+          },
+          "response": []
+        },
+        {
+          "name": "List deployments.",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/deployments?limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "deployments"],
+              "query": [{ "key": "limit", "value": "10" }]
+            },
+            "description": "Returns a paginated list of reported deployments."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Incidents",
+      "item": [
+        {
+          "name": "Create an incident.",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/incidents",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "incidents"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"provider_id\": \"<string>\",\n  \"http_url\": \"<string>\",\n  \"title\": \"<string>\",\n  \"issued_at\": \"<date-time>\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Uploads a custom incident report to feed change failure rate and MTTR metrics."
+          },
+          "response": []
+        },
+        {
+          "name": "Update an incident.",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/v1/incidents/{provider_id}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v1", "incidents", "{provider_id}"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"<string>\",\n  \"issued_at\": \"<date-time>\",\n  \"git_ref\": \"<string>\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Updates an existing incident identified by its provider id."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Measurements",
+      "item": [
+        {
+          "name": "Retrieve engineering metrics.",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/measurements",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "measurements"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"group_by\": \"<string>\",\n  \"roll_up\": \"1w\",\n  \"requested_metrics\": [{ \"name\": \"<string>\", \"agg\": \"p75\" }],\n  \"time_ranges\": [{ \"after\": \"yyyy-mm-dd\", \"before\": \"yyyy-mm-dd\" }]\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Returns engineering metrics for the requested time ranges, grouping, and roll-up."
+          },
+          "response": []
+        },
+        {
+          "name": "Export engineering metrics.",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": {
+              "raw": "{{baseUrl}}/api/v2/measurements/export",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "v2", "measurements", "export"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"group_by\": \"<string>\",\n  \"roll_up\": \"custom\",\n  \"requested_metrics\": [{ \"name\": \"<string>\" }],\n  \"time_ranges\": [{ \"after\": \"yyyy-mm-dd\", \"before\": \"yyyy-mm-dd\" }]\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Generates a metrics report and drops it as a CSV or JSON file in cloud storage."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Teams",
+      "item": [
+        {
+          "name": "Search teams.",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/api/v2/teams", "host": ["{{baseUrl}}"], "path": ["api", "v2", "teams"] },
+            "description": "Searches teams."
+          },
+          "response": []
+        },
+        {
+          "name": "Create teams.",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/api/v2/teams", "host": ["{{baseUrl}}"], "path": ["api", "v2", "teams"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"teams\": [{ \"name\": \"<string>\", \"parent_team\": \"<string>\", \"initials\": \"<string>\", \"color\": \"#348B83\" }]\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Creates one or more teams."
+          },
+          "response": []
+        },
+        {
+          "name": "Update a team.",
+          "request": {
+            "method": "PATCH",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/api/v2/teams/{team_id}", "host": ["{{baseUrl}}"], "path": ["api", "v2", "teams", "{team_id}"] },
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"<string>\"\n}", "options": { "raw": { "language": "json" } } },
+            "description": "Updates a team."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a team.",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/api/v2/teams/{team_id}", "host": ["{{baseUrl}}"], "path": ["api", "v2", "teams", "{team_id}"] },
+            "description": "Deletes a team."
+          },
+          "response": []
+        },
+        {
+          "name": "Get team members.",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/api/v2/teams/{team_id}/members", "host": ["{{baseUrl}}"], "path": ["api", "v2", "teams", "{team_id}", "members"] },
+            "description": "Returns the members of a team."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Services",
+      "item": [
+        {
+          "name": "List services.",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/api/v1/services", "host": ["{{baseUrl}}"], "path": ["api", "v1", "services"] },
+            "description": "Returns the list of services."
+          },
+          "response": []
+        },
+        {
+          "name": "Create services.",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/api/v1/services", "host": ["{{baseUrl}}"], "path": ["api", "v1", "services"] },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"services\": [{ \"name\": \"<string>\", \"repositories\": [{ \"url\": \"<string>\", \"paths\": [] }] }]\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "description": "Creates one or more services in a single request."
+          },
+          "response": []
+        },
+        {
+          "name": "Update a service.",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "url": { "raw": "{{baseUrl}}/api/v1/services/{service_id}", "host": ["{{baseUrl}}"], "path": ["api", "v1", "services", "{service_id}"] },
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"<string>\"\n}", "options": { "raw": { "language": "json" } } },
+            "description": "Updates a service."
+          },
+          "response": []
+        },
+        {
+          "name": "Delete a service.",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/api/v1/services/{service_id}", "host": ["{{baseUrl}}"], "path": ["api", "v1", "services", "{service_id}"] },
+            "description": "Deletes a service."
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}

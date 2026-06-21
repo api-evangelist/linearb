@@ -1,0 +1,82 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: LinearB
+providerId: linearb
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Engineering Analytics
+- SEI
+- Developer Productivity
+- DORA Metrics
+- DevOps
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of LinearB spend. LinearB bills as a per-contributor SaaS
+  subscription across Free, Essentials, and Enterprise tiers, billed monthly or
+  annually in USD. Cost scales with the number of active contributors rather
+  than with API call volume; the public REST API is included with a subscription
+  and is not separately metered.
+notes: >-
+  Per-contributor rates and tier minimums are subject to change and are largely
+  quote-based; verify against the LinearB pricing page during reconciliation.
+sources:
+- https://linearb.io/pricing
+- https://docs.linearb.io/api-overview/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: LinearB
+serviceCategory: Developer Tools
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+  - Adjustment
+focusColumns:
+  ServiceName: LinearB
+  ServiceCategory: Developer Tools
+  ProviderName: LinearB
+  PublisherName: LinearB
+  InvoiceIssuerName: LinearB
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Subscription
+meters:
+- name: contributors
+  description: Active contributors counted for per-contributor subscription billing.
+  unit: contributors
+  aggregation: max
+  dimensions:
+  - account
+  - plan
+- name: subscription_term
+  description: Monthly or annual subscription term billed per plan tier.
+  unit: months
+  aggregation: sum
+  dimensions:
+  - account
+  - plan
+principles:
+- name: Visibility
+  description: Track active contributor counts against the subscribed tier; reconcile against invoices.
+- name: Allocation
+  description: Map contributors to teams and services in LinearB to allocate subscription cost to the right cost centers.
+- name: Optimization
+  description: Right-size the tier to active-contributor count; consolidate inactive seats; choose annual billing where it lowers the effective per-contributor rate.
+- name: Accountability
+  description: Assign an owner for the LinearB subscription and review contributor counts and tier fit each renewal cycle.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

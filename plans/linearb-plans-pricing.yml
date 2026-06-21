@@ -1,0 +1,114 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: LinearB
+providerId: linearb
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: false
+tags:
+- Engineering Analytics
+- SEI
+- Developer Productivity
+- DORA Metrics
+- DevOps
+- Plans
+description: >-
+  LinearB sells per-contributor SaaS subscriptions across a Free tier and paid
+  tiers (Essentials and Enterprise), with limits on contributors, teams,
+  connected repositories, and data retention rising by tier. LinearB does not
+  publish complete list pricing; paid and Enterprise tiers are quoted based on
+  team size and requirements. The public REST API is available to customers for
+  reporting deployments and incidents, exporting measurements, and managing
+  teams and services; API access itself is not separately metered.
+notes: >-
+  Representative tier figures gathered from LinearB's pricing page and
+  third-party pricing summaries; verify current contributor limits, retention,
+  and per-contributor rates against the LinearB pricing page during
+  reconciliation.
+sources:
+- https://linearb.io/pricing
+- https://docs.linearb.io/api-overview/
+plans:
+- id: linearb-free
+  name: Free
+  type: free
+  description: >-
+    Free-forever tier for small teams, with limited contributors, a single
+    team, capped connected repositories, and short data retention.
+  entries:
+  - label: Contributors
+    name: contributors
+    type: limit
+    metric: contributors
+    limit: 8
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free
+    userMultiplied: false
+  - label: Teams
+    name: teams
+    type: limit
+    metric: teams
+    limit: 1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free
+    userMultiplied: false
+  elements:
+  - name: DORA Metrics
+  - name: Engineering Metrics
+  - name: Public REST API
+  - name: WorkerB Automations
+- id: linearb-essentials
+  name: Essentials
+  type: subscription
+  description: >-
+    Per-contributor paid tier (formerly Pro) for growing organizations, with
+    more contributors and teams, more connected repositories, and longer data
+    retention than Free.
+  entries:
+  - label: Per Contributor
+    name: per_contributor
+    type: flat
+    metric: contributors
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: approximately $29 per contributor / month (annual billing)
+    userMultiplied: true
+  elements:
+  - name: DORA Metrics
+  - name: Engineering Metrics
+  - name: Public REST API
+  - name: WorkerB Automations
+  - name: Extended Data Retention
+- id: linearb-enterprise
+  name: Enterprise
+  type: enterprise
+  description: >-
+    Per-contributor Enterprise tier with no limits on teams, contributors, or
+    connected repositories, plus advanced administration, security, and support.
+    Custom-quoted with a contributor minimum.
+  entries:
+  - label: Per Contributor
+    name: per_contributor
+    type: flat
+    metric: contributors
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: from approximately $59 per contributor / month, contact sales
+    userMultiplied: true
+  elements:
+  - name: Unlimited Teams and Repositories
+  - name: Advanced Security and SSO
+  - name: Dedicated Support
+  - name: Custom Volume Pricing
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

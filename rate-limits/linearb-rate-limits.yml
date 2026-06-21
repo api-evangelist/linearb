@@ -1,0 +1,44 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: LinearB
+providerId: linearb
+created: '2026-06-21'
+modified: '2026-06-21'
+reconciled: true
+tags:
+- Engineering Analytics
+- SEI
+- Developer Productivity
+- DORA Metrics
+- DevOps
+- Rate Limiting
+- Quotas
+- Throttling
+description: >-
+  The LinearB public REST API enforces a per-endpoint rate limit of a maximum
+  of 60 calls per minute for each specific endpoint. Requests beyond the limit
+  are throttled. Limits apply per API token across the deployments, incidents,
+  measurements, teams, and services endpoints.
+notes: >-
+  Per-endpoint limit confirmed from the LinearB API overview documentation;
+  verify any plan-specific overrides during reconciliation.
+sources:
+- https://docs.linearb.io/api-overview/
+- https://docs.linearb.io/api-troubleshooting/
+responseCodes:
+  throttled: 429
+limits:
+- name: Per-Endpoint Calls Per Minute
+  scope: endpoint
+  metric: requests
+  limit: 60
+  notes: A maximum of 60 calls per minute for each specific endpoint, per API token.
+policies:
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After when receiving 429 responses.
+- name: Per-Endpoint Scope
+  description: The 60 calls-per-minute limit is applied independently to each specific endpoint rather than globally across all endpoints.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

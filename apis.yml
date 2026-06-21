@@ -1,0 +1,168 @@
+aid: linearb
+url: https://raw.githubusercontent.com/api-evangelist/linearb/refs/heads/main/apis.yml
+name: LinearB
+kind: company
+description: LinearB is a software engineering intelligence (SEI) and developer productivity
+  platform that correlates Git, CI/CD, project management, and incident data into DORA
+  and engineering metrics. The LinearB REST API lets teams report deployments, push
+  incidents, export measurements, and manage teams and services programmatically.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Engineering Analytics
+- SEI
+- Developer Productivity
+- DORA Metrics
+- DevOps
+created: '2026-06-21'
+modified: '2026-06-21'
+specificationVersion: '0.19'
+apis:
+- aid: linearb:linearb-deployments-api
+  name: LinearB Deployments API
+  tags:
+  - Deployments
+  - Releases
+  - DORA
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.linearb.io/api-deployments/
+  baseURL: https://public-api.linearb.io/api/v1
+  properties:
+  - url: https://docs.linearb.io/api-deployments/
+    type: Documentation
+  - url: https://docs.linearb.io/api-overview/
+    type: APIReference
+  - url: openapi/linearb-openapi.yml
+    type: OpenAPI
+  - url: collections/linearb.postman_collection.json
+    type: PostmanCollection
+  - url: collections/linearb.opencollection.json
+    type: OpenCollection
+  description: Report and list software deployments by Git repository and ref so LinearB
+    can calculate deployment frequency, lead time, and other DORA metrics.
+- aid: linearb:linearb-incidents-api
+  name: LinearB Incidents API
+  tags:
+  - Incidents
+  - MTTR
+  - Change Failure Rate
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.linearb.io/api-incidents/
+  baseURL: https://public-api.linearb.io/api/v1
+  properties:
+  - url: https://docs.linearb.io/api-incidents/
+    type: Documentation
+  - url: https://docs.linearb.io/api-overview/
+    type: APIReference
+  - url: openapi/linearb-openapi.yml
+    type: OpenAPI
+  - url: collections/linearb.postman_collection.json
+    type: PostmanCollection
+  - url: collections/linearb.opencollection.json
+    type: OpenCollection
+  description: Upload and update custom incident reports from external incident-management
+    tools to feed change failure rate and mean-time-to-restore (MTTR) metrics.
+- aid: linearb:linearb-measurements-api
+  name: LinearB Measurements API
+  tags:
+  - Measurements
+  - Metrics
+  - Export
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.linearb.io/api-measurements-v2/
+  baseURL: https://public-api.linearb.io/api/v2
+  properties:
+  - url: https://docs.linearb.io/api-measurements-v2/
+    type: Documentation
+  - url: https://docs.linearb.io/api-overview/
+    type: APIReference
+  - url: openapi/linearb-openapi.yml
+    type: OpenAPI
+  - url: collections/linearb.postman_collection.json
+    type: PostmanCollection
+  - url: collections/linearb.opencollection.json
+    type: OpenCollection
+  description: Retrieve engineering metrics on demand or export them to CSV/JSON, with
+    grouping, roll-up, and aggregation (p50, p75, average) across configurable time
+    ranges.
+- aid: linearb:linearb-teams-api
+  name: LinearB Teams API
+  tags:
+  - Teams
+  - Membership
+  - Organization
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.linearb.io/api-teams-v2/
+  baseURL: https://public-api.linearb.io/api/v2
+  properties:
+  - url: https://docs.linearb.io/api-teams-v2/
+    type: Documentation
+  - url: https://docs.linearb.io/api-overview/
+    type: APIReference
+  - url: openapi/linearb-openapi.yml
+    type: OpenAPI
+  - url: collections/linearb.postman_collection.json
+    type: PostmanCollection
+  - url: collections/linearb.opencollection.json
+    type: OpenCollection
+  description: Search, create, update, and delete teams and manage their membership
+    via the Teams V2 API, including team hierarchy with parent teams.
+- aid: linearb:linearb-services-api
+  name: LinearB Services API
+  tags:
+  - Services
+  - Repositories
+  - Catalog
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.linearb.io/api-services/
+  baseURL: https://public-api.linearb.io/api/v1
+  properties:
+  - url: https://docs.linearb.io/api-services/
+    type: Documentation
+  - url: https://docs.linearb.io/api-overview/
+    type: APIReference
+  - url: openapi/linearb-openapi.yml
+    type: OpenAPI
+  - url: collections/linearb.postman_collection.json
+    type: PostmanCollection
+  - url: collections/linearb.opencollection.json
+    type: OpenCollection
+  description: Create, list, update, and delete services that map repositories and
+    directory paths so metrics and deployments can be attributed at the service level.
+- aid: linearb:linearb-webhooks-api
+  name: LinearB Webhooks API
+  tags:
+  - Webhooks
+  - Events
+  - Notifications
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.linearb.io/api-overview/
+  baseURL: https://public-api.linearb.io/api/v1
+  properties:
+  - url: https://docs.linearb.io/api-overview/
+    type: Documentation
+  - url: openapi/linearb-openapi.yml
+    type: OpenAPI
+  - url: collections/linearb.postman_collection.json
+    type: PostmanCollection
+  - url: collections/linearb.opencollection.json
+    type: OpenCollection
+  description: Consume LinearB events to drive WorkerB automations and outbound integrations,
+    enabling event-driven workflows around pull requests, deployments, and incidents.
+common:
+- type: GitHubOrganization
+  url: https://github.com/linear-b
+- type: LinkedIn
+  url: https://www.linkedin.com/company/linearb
+- type: Website
+  url: https://linearb.io/
+- type: Documentation
+  url: https://docs.linearb.io/api-overview/
+- type: Plans
+  url: plans/linearb-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/linearb-rate-limits.yml
+- type: FinOps
+  url: finops/linearb-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

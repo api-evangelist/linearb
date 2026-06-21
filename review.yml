@@ -1,0 +1,78 @@
+aid: linearb
+name: LinearB
+review:
+  question: Does LinearB expose a documented public WebSocket API?
+  answer: false
+  date: '2026-06-21'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No streaming or event-stream transport (WebSocket or HTTP Server-Sent
+    Events) is documented for the LinearB public API, so no AsyncAPI document
+    was authored. LinearB does support outbound webhooks for WorkerB
+    automations, but those are HTTP callbacks rather than a client-facing
+    streaming API surface.
+findings:
+  summary: |
+    LinearB does not publish a documented public WebSocket API. The LinearB
+    public API is a REST (HTTPS) interface under https://public-api.linearb.io
+    authenticated with an API token in the x-api-key request header. Documented
+    surfaces cover deployments, incidents, measurements (V2) and export, teams
+    (V2), services, plus health, users, and jobs. Event delivery to external
+    systems is handled through outbound webhooks / WorkerB integrations (HTTP
+    callbacks), not a bidirectional WebSocket (ws:// or wss://) connection.
+    No realtime streaming WebSocket endpoint is documented.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://public-api.linearb.io
+      documented: true
+    - protocol: Webhook
+      scheme: https
+      note: Outbound HTTP callbacks for WorkerB automations and integrations. Server-to-client push over HTTP, not WebSocket.
+      documented: true
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented in the LinearB API reference for deployments, incidents, measurements, teams, or services as of the review date.
+  endpointsConfirmedRest:
+    - POST   https://public-api.linearb.io/api/v1/deployments
+    - GET    https://public-api.linearb.io/api/v1/deployments
+    - POST   https://public-api.linearb.io/api/v1/incidents
+    - PATCH  https://public-api.linearb.io/api/v1/incidents/{provider_id}
+    - POST   https://public-api.linearb.io/api/v2/measurements
+    - POST   https://public-api.linearb.io/api/v2/measurements/export
+    - GET    https://public-api.linearb.io/api/v2/teams
+    - POST   https://public-api.linearb.io/api/v2/teams
+    - PATCH  https://public-api.linearb.io/api/v2/teams/{team_id}
+    - DELETE https://public-api.linearb.io/api/v2/teams/{team_id}
+    - GET    https://public-api.linearb.io/api/v2/teams/{team_id}/members
+    - POST   https://public-api.linearb.io/api/v2/teams/{team_id}/members
+    - PATCH  https://public-api.linearb.io/api/v2/teams/{team_id}/members
+    - DELETE https://public-api.linearb.io/api/v2/teams/{team_id}/members/{user_id_or_email}
+    - GET    https://public-api.linearb.io/api/v1/services
+    - POST   https://public-api.linearb.io/api/v1/services
+    - GET    https://public-api.linearb.io/api/v1/services/{service_id}
+    - PUT    https://public-api.linearb.io/api/v1/services/{service_id}
+    - DELETE https://public-api.linearb.io/api/v1/services/{service_id}
+sources:
+  - url: https://docs.linearb.io/api-overview/
+    type: Documentation
+    note: Overview lists REST base URL https://public-api.linearb.io with x-api-key header; no WebSocket mentioned.
+  - url: https://docs.linearb.io/api-deployments/
+    type: Documentation
+    note: Deployments use POST and GET against /api/v1/deployments over HTTPS REST.
+  - url: https://docs.linearb.io/api-incidents/
+    type: Documentation
+    note: Incidents use POST and PATCH against /api/v1/incidents over HTTPS REST.
+  - url: https://docs.linearb.io/api-measurements-v2/
+    type: Documentation
+    note: Measurements V2 use POST against /api/v2/measurements and /api/v2/measurements/export; no WebSocket streaming.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists, and no SSE/event-stream transport is
+    documented for the LinearB public API. Outbound webhooks are HTTP callbacks
+    and were captured as a Webhooks API entry in apis.yml rather than modeled as
+    a streaming AsyncAPI document.

@@ -1,0 +1,210 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LinearB Public API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{apiKey}}",
+      "in": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Deployments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Report a deployment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.linearb.io/api/v1/deployments",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"repo_url\": \"<string>\",\n  \"ref_name\": \"<string>\",\n  \"timestamp\": \"<date-time>\",\n  \"stage\": \"<string>\",\n  \"services\": []\n}"
+            }
+          },
+          "docs": "Reports a deployment so LinearB can calculate deployment frequency and lead time."
+        },
+        {
+          "info": {
+            "name": "List deployments.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.linearb.io/api/v1/deployments"
+          },
+          "docs": "Returns a paginated list of reported deployments."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Incidents",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create an incident.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.linearb.io/api/v1/incidents",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"provider_id\": \"<string>\",\n  \"http_url\": \"<string>\",\n  \"title\": \"<string>\",\n  \"issued_at\": \"<date-time>\"\n}"
+            }
+          },
+          "docs": "Uploads a custom incident report to feed change failure rate and MTTR metrics."
+        },
+        {
+          "info": {
+            "name": "Update an incident.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://public-api.linearb.io/api/v1/incidents/{provider_id}",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"title\": \"<string>\",\n  \"issued_at\": \"<date-time>\",\n  \"git_ref\": \"<string>\"\n}"
+            }
+          },
+          "docs": "Updates an existing incident identified by its provider id."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Measurements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve engineering metrics.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.linearb.io/api/v2/measurements",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"group_by\": \"<string>\",\n  \"roll_up\": \"1w\",\n  \"requested_metrics\": [{ \"name\": \"<string>\", \"agg\": \"p75\" }],\n  \"time_ranges\": [{ \"after\": \"yyyy-mm-dd\", \"before\": \"yyyy-mm-dd\" }]\n}"
+            }
+          },
+          "docs": "Returns engineering metrics for the requested time ranges, grouping, and roll-up."
+        },
+        {
+          "info": {
+            "name": "Export engineering metrics.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.linearb.io/api/v2/measurements/export",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"group_by\": \"<string>\",\n  \"roll_up\": \"custom\",\n  \"requested_metrics\": [{ \"name\": \"<string>\" }],\n  \"time_ranges\": [{ \"after\": \"yyyy-mm-dd\", \"before\": \"yyyy-mm-dd\" }]\n}"
+            }
+          },
+          "docs": "Generates a metrics report and drops it as a CSV or JSON file in cloud storage."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Teams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "Search teams.", "type": "http" },
+          "http": { "method": "GET", "url": "https://public-api.linearb.io/api/v2/teams" },
+          "docs": "Searches teams."
+        },
+        {
+          "info": { "name": "Create teams.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.linearb.io/api/v2/teams",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"teams\": [{ \"name\": \"<string>\", \"parent_team\": \"<string>\", \"initials\": \"<string>\", \"color\": \"#348B83\" }]\n}"
+            }
+          },
+          "docs": "Creates one or more teams."
+        },
+        {
+          "info": { "name": "Update a team.", "type": "http" },
+          "http": {
+            "method": "PATCH",
+            "url": "https://public-api.linearb.io/api/v2/teams/{team_id}",
+            "body": { "type": "json", "data": "{\n  \"name\": \"<string>\"\n}" }
+          },
+          "docs": "Updates a team."
+        },
+        {
+          "info": { "name": "Delete a team.", "type": "http" },
+          "http": { "method": "DELETE", "url": "https://public-api.linearb.io/api/v2/teams/{team_id}" },
+          "docs": "Deletes a team."
+        },
+        {
+          "info": { "name": "Get team members.", "type": "http" },
+          "http": { "method": "GET", "url": "https://public-api.linearb.io/api/v2/teams/{team_id}/members" },
+          "docs": "Returns the members of a team."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Services",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": { "name": "List services.", "type": "http" },
+          "http": { "method": "GET", "url": "https://public-api.linearb.io/api/v1/services" },
+          "docs": "Returns the list of services."
+        },
+        {
+          "info": { "name": "Create services.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.linearb.io/api/v1/services",
+            "body": {
+              "type": "json",
+              "data": "{\n  \"services\": [{ \"name\": \"<string>\", \"repositories\": [{ \"url\": \"<string>\", \"paths\": [] }] }]\n}"
+            }
+          },
+          "docs": "Creates one or more services in a single request."
+        },
+        {
+          "info": { "name": "Update a service.", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://public-api.linearb.io/api/v1/services/{service_id}",
+            "body": { "type": "json", "data": "{\n  \"name\": \"<string>\"\n}" }
+          },
+          "docs": "Updates a service."
+        },
+        {
+          "info": { "name": "Delete a service.", "type": "http" },
+          "http": { "method": "DELETE", "url": "https://public-api.linearb.io/api/v1/services/{service_id}" },
+          "docs": "Deletes a service."
+        }
+      ]
+    }
+  ]
+}
