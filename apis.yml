@@ -149,6 +149,12 @@ apis:
   description: Consume LinearB events to drive WorkerB automations and outbound integrations,
     enabling event-driven workflows around pull requests, deployments, and incidents.
 common:
+- type: TrustCenter
+  url: security/linearb-trust-center.yml
+- type: DomainSecurity
+  url: security/linearb-domain-security.yml
+- type: Authentication
+  url: authentication/linearb-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/linear-b
 - type: LinkedIn
