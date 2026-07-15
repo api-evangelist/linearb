@@ -149,6 +149,8 @@ apis:
   description: Consume LinearB events to drive WorkerB automations and outbound integrations,
     enabling event-driven workflows around pull requests, deployments, and incidents.
 common:
+- type: AgenticAccess
+  url: agentic-access/linearb-agentic-access.yml
 - type: TrustCenter
   url: security/linearb-trust-center.yml
 - type: DomainSecurity
