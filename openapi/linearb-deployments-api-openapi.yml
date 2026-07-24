@@ -1,0 +1,155 @@
+openapi: 3.0.1
+info:
+  title: LinearB Public Deployments API
+  description: The LinearB public REST API for software engineering intelligence. Report deployments, push and update incidents, export engineering measurements (DORA and developer-productivity metrics), and manage teams and services. All requests are authenticated with an API token passed in the x-api-key request header.
+  termsOfService: https://linearb.io/legal/terms-of-service
+  contact:
+    name: LinearB Support
+    url: https://docs.linearb.io/api-overview/
+  version: '1.0'
+servers:
+- url: https://public-api.linearb.io
+security:
+- apiKeyAuth: []
+tags:
+- name: Deployments
+paths:
+  /api/v1/deployments:
+    post:
+      operationId: createDeployment
+      tags:
+      - Deployments
+      summary: Report a deployment.
+      description: Reports a deployment so LinearB can calculate deployment frequency and lead time.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateDeploymentRequest'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateDeploymentResponse'
+    get:
+      operationId: listDeployments
+      tags:
+      - Deployments
+      summary: List deployments.
+      description: Returns a paginated list of reported deployments.
+      parameters:
+      - name: repository_id
+        in: query
+        schema:
+          type: integer
+      - name: after
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: before
+        in: query
+        schema:
+          type: string
+          format: date-time
+      - name: stage
+        in: query
+        schema:
+          type: string
+      - name: commit_sha
+        in: query
+        schema:
+          type: string
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 100
+          default: 10
+      - name: offset
+        in: query
+        schema:
+          type: string
+      - name: sort_by
+        in: query
+        schema:
+          type: string
+          default: published_at
+      - name: sort_dir
+        in: query
+        schema:
+          type: string
+          enum:
+          - asc
+          - desc
+          default: desc
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeploymentList'
+components:
+  schemas:
+    CreateDeploymentResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
+    DeploymentList:
+      type: object
+      properties:
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Deployment'
+    CreateDeploymentRequest:
+      type: object
+      required:
+      - repo_url
+      - ref_name
+      properties:
+        repo_url:
+          type: string
+          description: The git repository url.
+        ref_name:
+          type: string
+          description: Ref name of the release, accepts any Git ref.
+        timestamp:
+          type: string
+          format: date-time
+          description: Deployment time in ISO 8601 format.
+        stage:
+          type: string
+          description: The key of the custom pre-deployment stage (lowercase).
+        services:
+          type: array
+          description: The list of LinearB service names (lowercase).
+          items:
+            type: string
+    Deployment:
+      type: object
+      properties:
+        repository_id:
+          type: integer
+        ref_name:
+          type: string
+        commit_sha:
+          type: string
+        stage:
+          type: string
+        published_at:
+          type: string
+          format: date-time
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key

@@ -1,0 +1,110 @@
+openapi: 3.0.1
+info:
+  title: LinearB Public Deployments Measurements API
+  description: The LinearB public REST API for software engineering intelligence. Report deployments, push and update incidents, export engineering measurements (DORA and developer-productivity metrics), and manage teams and services. All requests are authenticated with an API token passed in the x-api-key request header.
+  termsOfService: https://linearb.io/legal/terms-of-service
+  contact:
+    name: LinearB Support
+    url: https://docs.linearb.io/api-overview/
+  version: '1.0'
+servers:
+- url: https://public-api.linearb.io
+security:
+- apiKeyAuth: []
+tags:
+- name: Measurements
+paths:
+  /api/v2/measurements:
+    post:
+      operationId: getMeasurements
+      tags:
+      - Measurements
+      summary: Retrieve engineering metrics.
+      description: Returns engineering metrics for the requested time ranges, grouping, and roll-up. Supported metrics may be aggregated (p50, p75, average).
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeasurementsRequest'
+      responses:
+        '200':
+          description: OK
+  /api/v2/measurements/export:
+    post:
+      operationId: exportMeasurements
+      tags:
+      - Measurements
+      summary: Export engineering metrics.
+      description: Generates a metrics report and drops it as a CSV or JSON file in cloud storage.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MeasurementsRequest'
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    TimeRange:
+      type: object
+      required:
+      - after
+      - before
+      properties:
+        after:
+          type: string
+          description: Range start in yyyy-mm-dd format.
+        before:
+          type: string
+          description: Range end in yyyy-mm-dd format, greater than after.
+    MeasurementsRequest:
+      type: object
+      required:
+      - requested_metrics
+      - time_ranges
+      properties:
+        group_by:
+          type: string
+          description: Dimension to group results by (for example organization, team, repository, or contributor).
+        roll_up:
+          type: string
+          description: Time aggregation granularity (for example 1d, 1w, 1mo, or custom).
+          enum:
+          - 1d
+          - 1w
+          - 1mo
+          - custom
+        requested_metrics:
+          type: array
+          description: The list of metrics to retrieve, optionally with an aggregation.
+          items:
+            $ref: '#/components/schemas/RequestedMetric'
+        time_ranges:
+          type: array
+          description: One or more date ranges in yyyy-mm-dd format; multiple ranges require roll_up=custom.
+          items:
+            $ref: '#/components/schemas/TimeRange'
+    RequestedMetric:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: The metric key (for example branch.computed.cycle_time).
+        agg:
+          type: string
+          description: Aggregation method for metrics that support it.
+          enum:
+          - p50
+          - p75
+          - avg
+          - default
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key

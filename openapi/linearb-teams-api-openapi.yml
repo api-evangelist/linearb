@@ -1,0 +1,169 @@
+openapi: 3.0.1
+info:
+  title: LinearB Public Deployments Teams API
+  description: The LinearB public REST API for software engineering intelligence. Report deployments, push and update incidents, export engineering measurements (DORA and developer-productivity metrics), and manage teams and services. All requests are authenticated with an API token passed in the x-api-key request header.
+  termsOfService: https://linearb.io/legal/terms-of-service
+  contact:
+    name: LinearB Support
+    url: https://docs.linearb.io/api-overview/
+  version: '1.0'
+servers:
+- url: https://public-api.linearb.io
+security:
+- apiKeyAuth: []
+tags:
+- name: Teams
+paths:
+  /api/v2/teams:
+    get:
+      operationId: searchTeams
+      tags:
+      - Teams
+      summary: Search teams.
+      responses:
+        '200':
+          description: OK
+    post:
+      operationId: createTeams
+      tags:
+      - Teams
+      summary: Create teams.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTeamsRequest'
+      responses:
+        '200':
+          description: OK
+  /api/v2/teams/{team_id}:
+    patch:
+      operationId: updateTeam
+      tags:
+      - Teams
+      summary: Update a team.
+      parameters:
+      - name: team_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Team'
+      responses:
+        '200':
+          description: OK
+    delete:
+      operationId: deleteTeam
+      tags:
+      - Teams
+      summary: Delete a team.
+      parameters:
+      - name: team_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+  /api/v2/teams/{team_id}/members:
+    get:
+      operationId: getTeamMembers
+      tags:
+      - Teams
+      summary: Get team members.
+      parameters:
+      - name: team_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+    post:
+      operationId: setTeamMembers
+      tags:
+      - Teams
+      summary: Set team members.
+      parameters:
+      - name: team_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+    patch:
+      operationId: addTeamMembers
+      tags:
+      - Teams
+      summary: Add members to a team.
+      parameters:
+      - name: team_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+  /api/v2/teams/{team_id}/members/{user_id_or_email}:
+    delete:
+      operationId: removeTeamMember
+      tags:
+      - Teams
+      summary: Remove a member from a team.
+      parameters:
+      - name: team_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: user_id_or_email
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    CreateTeamsRequest:
+      type: object
+      properties:
+        teams:
+          type: array
+          items:
+            $ref: '#/components/schemas/Team'
+    Team:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: Team name, 3-100 characters beginning with a letter.
+        parent_team:
+          type: string
+          description: Name of an existing parent team for hierarchy.
+        initials:
+          type: string
+          description: Optional 1-3 character abbreviation.
+        color:
+          type: string
+          description: Hex color code in
+          default: '#348B83'
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key

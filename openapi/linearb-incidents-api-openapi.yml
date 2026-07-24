@@ -1,0 +1,134 @@
+openapi: 3.0.1
+info:
+  title: LinearB Public Deployments Incidents API
+  description: The LinearB public REST API for software engineering intelligence. Report deployments, push and update incidents, export engineering measurements (DORA and developer-productivity metrics), and manage teams and services. All requests are authenticated with an API token passed in the x-api-key request header.
+  termsOfService: https://linearb.io/legal/terms-of-service
+  contact:
+    name: LinearB Support
+    url: https://docs.linearb.io/api-overview/
+  version: '1.0'
+servers:
+- url: https://public-api.linearb.io
+security:
+- apiKeyAuth: []
+tags:
+- name: Incidents
+paths:
+  /api/v1/incidents:
+    post:
+      operationId: createIncident
+      tags:
+      - Incidents
+      summary: Create an incident.
+      description: Uploads a custom incident report to feed change failure rate and MTTR metrics.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateIncidentRequest'
+      responses:
+        '200':
+          description: OK
+  /api/v1/incidents/{provider_id}:
+    patch:
+      operationId: updateIncident
+      tags:
+      - Incidents
+      summary: Update an incident.
+      description: Updates an existing incident identified by its provider id.
+      parameters:
+      - name: provider_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateIncidentRequest'
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    UpdateIncidentRequest:
+      type: object
+      required:
+      - title
+      - issued_at
+      - git_ref
+      properties:
+        title:
+          type: string
+        issued_at:
+          type: string
+          format: date-time
+        git_ref:
+          type: string
+        started_at:
+          type: string
+          format: date-time
+        ended_at:
+          type: string
+          format: date-time
+        teams:
+          type: array
+          items:
+            type: string
+        services:
+          type: array
+          items:
+            type: string
+        repository_urls:
+          type: array
+          items:
+            type: string
+    CreateIncidentRequest:
+      type: object
+      required:
+      - provider_id
+      - http_url
+      - title
+      - issued_at
+      properties:
+        provider_id:
+          type: string
+          description: Unique identifier of the incident in your incident management provider.
+        http_url:
+          type: string
+          description: The URL of your incident management provider.
+        title:
+          type: string
+          description: The title of the incident.
+        issued_at:
+          type: string
+          format: date-time
+          description: When the incident was logged and officially opened.
+        started_at:
+          type: string
+          format: date-time
+        ended_at:
+          type: string
+          format: date-time
+        git_ref:
+          type: string
+        teams:
+          type: array
+          items:
+            type: string
+        services:
+          type: array
+          items:
+            type: string
+        repository_urls:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key

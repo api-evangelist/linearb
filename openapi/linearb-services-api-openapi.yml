@@ -1,0 +1,125 @@
+openapi: 3.0.1
+info:
+  title: LinearB Public Deployments Services API
+  description: The LinearB public REST API for software engineering intelligence. Report deployments, push and update incidents, export engineering measurements (DORA and developer-productivity metrics), and manage teams and services. All requests are authenticated with an API token passed in the x-api-key request header.
+  termsOfService: https://linearb.io/legal/terms-of-service
+  contact:
+    name: LinearB Support
+    url: https://docs.linearb.io/api-overview/
+  version: '1.0'
+servers:
+- url: https://public-api.linearb.io
+security:
+- apiKeyAuth: []
+tags:
+- name: Services
+paths:
+  /api/v1/services:
+    get:
+      operationId: listServices
+      tags:
+      - Services
+      summary: List services.
+      responses:
+        '200':
+          description: OK
+    post:
+      operationId: createServices
+      tags:
+      - Services
+      summary: Create services.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateServicesRequest'
+      responses:
+        '200':
+          description: OK
+  /api/v1/services/{service_id}:
+    get:
+      operationId: getService
+      tags:
+      - Services
+      summary: Get a service.
+      parameters:
+      - name: service_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+    put:
+      operationId: updateService
+      tags:
+      - Services
+      summary: Update a service.
+      parameters:
+      - name: service_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Service'
+      responses:
+        '200':
+          description: OK
+    delete:
+      operationId: deleteService
+      tags:
+      - Services
+      summary: Delete a service.
+      parameters:
+      - name: service_id
+        in: path
+        required: true
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+components:
+  schemas:
+    Service:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: The service display name.
+        repositories:
+          type: array
+          items:
+            $ref: '#/components/schemas/ServiceRepository'
+    CreateServicesRequest:
+      type: object
+      properties:
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/Service'
+    ServiceRepository:
+      type: object
+      properties:
+        url:
+          type: string
+          description: The repository URL.
+        paths:
+          type: array
+          description: Directory paths within the repository belonging to this service.
+          items:
+            type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: x-api-key
