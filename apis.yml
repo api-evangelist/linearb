@@ -6,7 +6,20 @@ description: LinearB is a software engineering intelligence (SEI) and developer 
   platform that correlates Git, CI/CD, project management, and incident data into DORA
   and engineering metrics. The LinearB REST API lets teams report deployments, push
   incidents, export measurements, and manage teams and services programmatically.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/linearb.png
 tags:
 - Engineering Analytics
 - SEI
@@ -19,135 +32,144 @@ specificationVersion: '0.19'
 apis:
 - aid: linearb:linearb-deployments-api
   name: LinearB Deployments API
-  tags:
-  - Deployments
-  - Releases
-  - DORA
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  description: The Deployments API from LinearB — 1 operation(s) for deployments.
   humanURL: https://docs.linearb.io/api-deployments/
   baseURL: https://public-api.linearb.io/api/v1
+  tags:
+  - Deployments
   properties:
-  - url: https://docs.linearb.io/api-deployments/
-    type: Documentation
-  - url: https://docs.linearb.io/api-overview/
-    type: APIReference
-  - url: openapi/linearb-openapi.yml
-    type: OpenAPI
-  - url: collections/linearb.postman_collection.json
-    type: PostmanCollection
-  - url: collections/linearb.opencollection.json
-    type: OpenCollection
-  description: Report and list software deployments by Git repository and ref so LinearB
-    can calculate deployment frequency, lead time, and other DORA metrics.
+  - type: OpenAPI
+    url: openapi/linearb-deployments-api-openapi.yml
+  - type: Documentation
+    url: https://docs.linearb.io/api-deployments/
+  - type: APIReference
+    url: https://docs.linearb.io/api-overview/
+  - type: PostmanCollection
+    url: collections/linearb.postman_collection.json
+  - type: OpenCollection
+    url: collections/linearb.opencollection.json
+  - type: Documentation
+    url: https://docs.linearb.io/api-incidents/
+  - type: Documentation
+    url: https://docs.linearb.io/api-measurements-v2/
+  - type: Documentation
+    url: https://docs.linearb.io/api-teams-v2/
+  - type: Documentation
+    url: https://docs.linearb.io/api-services/
+  - type: Documentation
+    url: https://docs.linearb.io/api-overview/
 - aid: linearb:linearb-incidents-api
   name: LinearB Incidents API
+  description: The Incidents API from LinearB — 2 operation(s) for incidents.
+  humanURL: https://docs.linearb.io/api-deployments/
+  baseURL: https://public-api.linearb.io/api/v1
   tags:
   - Incidents
-  - MTTR
-  - Change Failure Rate
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.linearb.io/api-incidents/
-  baseURL: https://public-api.linearb.io/api/v1
   properties:
-  - url: https://docs.linearb.io/api-incidents/
-    type: Documentation
-  - url: https://docs.linearb.io/api-overview/
-    type: APIReference
-  - url: openapi/linearb-openapi.yml
-    type: OpenAPI
-  - url: collections/linearb.postman_collection.json
-    type: PostmanCollection
-  - url: collections/linearb.opencollection.json
-    type: OpenCollection
-  description: Upload and update custom incident reports from external incident-management
-    tools to feed change failure rate and mean-time-to-restore (MTTR) metrics.
+  - type: OpenAPI
+    url: openapi/linearb-incidents-api-openapi.yml
+  - type: Documentation
+    url: https://docs.linearb.io/api-deployments/
+  - type: APIReference
+    url: https://docs.linearb.io/api-overview/
+  - type: PostmanCollection
+    url: collections/linearb.postman_collection.json
+  - type: OpenCollection
+    url: collections/linearb.opencollection.json
+  - type: Documentation
+    url: https://docs.linearb.io/api-incidents/
+  - type: Documentation
+    url: https://docs.linearb.io/api-measurements-v2/
+  - type: Documentation
+    url: https://docs.linearb.io/api-teams-v2/
+  - type: Documentation
+    url: https://docs.linearb.io/api-services/
+  - type: Documentation
+    url: https://docs.linearb.io/api-overview/
 - aid: linearb:linearb-measurements-api
   name: LinearB Measurements API
+  description: The Measurements API from LinearB — 2 operation(s) for measurements.
+  humanURL: https://docs.linearb.io/api-deployments/
+  baseURL: https://public-api.linearb.io/api/v1
   tags:
   - Measurements
-  - Metrics
-  - Export
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.linearb.io/api-measurements-v2/
-  baseURL: https://public-api.linearb.io/api/v2
   properties:
-  - url: https://docs.linearb.io/api-measurements-v2/
-    type: Documentation
-  - url: https://docs.linearb.io/api-overview/
-    type: APIReference
-  - url: openapi/linearb-openapi.yml
-    type: OpenAPI
-  - url: collections/linearb.postman_collection.json
-    type: PostmanCollection
-  - url: collections/linearb.opencollection.json
-    type: OpenCollection
-  description: Retrieve engineering metrics on demand or export them to CSV/JSON, with
-    grouping, roll-up, and aggregation (p50, p75, average) across configurable time
-    ranges.
-- aid: linearb:linearb-teams-api
-  name: LinearB Teams API
-  tags:
-  - Teams
-  - Membership
-  - Organization
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.linearb.io/api-teams-v2/
-  baseURL: https://public-api.linearb.io/api/v2
-  properties:
-  - url: https://docs.linearb.io/api-teams-v2/
-    type: Documentation
-  - url: https://docs.linearb.io/api-overview/
-    type: APIReference
-  - url: openapi/linearb-openapi.yml
-    type: OpenAPI
-  - url: collections/linearb.postman_collection.json
-    type: PostmanCollection
-  - url: collections/linearb.opencollection.json
-    type: OpenCollection
-  description: Search, create, update, and delete teams and manage their membership
-    via the Teams V2 API, including team hierarchy with parent teams.
+  - type: OpenAPI
+    url: openapi/linearb-measurements-api-openapi.yml
+  - type: Documentation
+    url: https://docs.linearb.io/api-deployments/
+  - type: APIReference
+    url: https://docs.linearb.io/api-overview/
+  - type: PostmanCollection
+    url: collections/linearb.postman_collection.json
+  - type: OpenCollection
+    url: collections/linearb.opencollection.json
+  - type: Documentation
+    url: https://docs.linearb.io/api-incidents/
+  - type: Documentation
+    url: https://docs.linearb.io/api-measurements-v2/
+  - type: Documentation
+    url: https://docs.linearb.io/api-teams-v2/
+  - type: Documentation
+    url: https://docs.linearb.io/api-services/
+  - type: Documentation
+    url: https://docs.linearb.io/api-overview/
 - aid: linearb:linearb-services-api
   name: LinearB Services API
+  description: The Services API from LinearB — 2 operation(s) for services.
+  humanURL: https://docs.linearb.io/api-deployments/
+  baseURL: https://public-api.linearb.io/api/v1
   tags:
   - Services
-  - Repositories
-  - Catalog
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.linearb.io/api-services/
-  baseURL: https://public-api.linearb.io/api/v1
   properties:
-  - url: https://docs.linearb.io/api-services/
-    type: Documentation
-  - url: https://docs.linearb.io/api-overview/
-    type: APIReference
-  - url: openapi/linearb-openapi.yml
-    type: OpenAPI
-  - url: collections/linearb.postman_collection.json
-    type: PostmanCollection
-  - url: collections/linearb.opencollection.json
-    type: OpenCollection
-  description: Create, list, update, and delete services that map repositories and
-    directory paths so metrics and deployments can be attributed at the service level.
-- aid: linearb:linearb-webhooks-api
-  name: LinearB Webhooks API
+  - type: OpenAPI
+    url: openapi/linearb-services-api-openapi.yml
+  - type: Documentation
+    url: https://docs.linearb.io/api-deployments/
+  - type: APIReference
+    url: https://docs.linearb.io/api-overview/
+  - type: PostmanCollection
+    url: collections/linearb.postman_collection.json
+  - type: OpenCollection
+    url: collections/linearb.opencollection.json
+  - type: Documentation
+    url: https://docs.linearb.io/api-incidents/
+  - type: Documentation
+    url: https://docs.linearb.io/api-measurements-v2/
+  - type: Documentation
+    url: https://docs.linearb.io/api-teams-v2/
+  - type: Documentation
+    url: https://docs.linearb.io/api-services/
+  - type: Documentation
+    url: https://docs.linearb.io/api-overview/
+- aid: linearb:linearb-teams-api
+  name: LinearB Teams API
+  description: The Teams API from LinearB — 4 operation(s) for teams.
+  humanURL: https://docs.linearb.io/api-deployments/
+  baseURL: https://public-api.linearb.io/api/v1
   tags:
-  - Webhooks
-  - Events
-  - Notifications
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.linearb.io/api-overview/
-  baseURL: https://public-api.linearb.io/api/v1
+  - Teams
   properties:
-  - url: https://docs.linearb.io/api-overview/
-    type: Documentation
-  - url: openapi/linearb-openapi.yml
-    type: OpenAPI
-  - url: collections/linearb.postman_collection.json
-    type: PostmanCollection
-  - url: collections/linearb.opencollection.json
-    type: OpenCollection
-  description: Consume LinearB events to drive WorkerB automations and outbound integrations,
-    enabling event-driven workflows around pull requests, deployments, and incidents.
+  - type: OpenAPI
+    url: openapi/linearb-teams-api-openapi.yml
+  - type: Documentation
+    url: https://docs.linearb.io/api-deployments/
+  - type: APIReference
+    url: https://docs.linearb.io/api-overview/
+  - type: PostmanCollection
+    url: collections/linearb.postman_collection.json
+  - type: OpenCollection
+    url: collections/linearb.opencollection.json
+  - type: Documentation
+    url: https://docs.linearb.io/api-incidents/
+  - type: Documentation
+    url: https://docs.linearb.io/api-measurements-v2/
+  - type: Documentation
+    url: https://docs.linearb.io/api-teams-v2/
+  - type: Documentation
+    url: https://docs.linearb.io/api-services/
+  - type: Documentation
+    url: https://docs.linearb.io/api-overview/
 common:
 - type: AgenticAccess
   url: agentic-access/linearb-agentic-access.yml
