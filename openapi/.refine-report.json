@@ -1,0 +1,22 @@
+{
+  "provider": "linearb",
+  "sources": [
+    "linearb-deployments-api-openapi.yml",
+    "linearb-incidents-api-openapi.yml",
+    "linearb-measurements-api-openapi.yml",
+    "linearb-services-api-openapi.yml",
+    "linearb-teams-api-openapi.yml"
+  ],
+  "outputs": [
+    "linearb-deployments-api-openapi.yml",
+    "linearb-incidents-api-openapi.yml",
+    "linearb-measurements-api-openapi.yml",
+    "linearb-services-api-openapi.yml",
+    "linearb-teams-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
