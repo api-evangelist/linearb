@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LinearB Public Deployments Measurements API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Measurements",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve engineering metrics.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.linearb.io/api/v2/measurements",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Returns engineering metrics for the requested time ranges, grouping, and roll-up. Supported metrics may be aggregated (p50, p75, average)."
+        },
+        {
+          "info": {
+            "name": "Export engineering metrics.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.linearb.io/api/v2/measurements/export",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates a metrics report and drops it as a CSV or JSON file in cloud storage."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

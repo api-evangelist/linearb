@@ -1,0 +1,169 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "LinearB Public Deployments Teams API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Teams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search teams.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.linearb.io/api/v2/teams"
+          },
+          "docs": "Search teams."
+        },
+        {
+          "info": {
+            "name": "Create teams.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.linearb.io/api/v2/teams",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create teams."
+        },
+        {
+          "info": {
+            "name": "Update a team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://public-api.linearb.io/api/v2/teams/:team_id",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a team."
+        },
+        {
+          "info": {
+            "name": "Delete a team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://public-api.linearb.io/api/v2/teams/:team_id",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a team."
+        },
+        {
+          "info": {
+            "name": "Get team members.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://public-api.linearb.io/api/v2/teams/:team_id/members",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get team members."
+        },
+        {
+          "info": {
+            "name": "Set team members.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://public-api.linearb.io/api/v2/teams/:team_id/members",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Set team members."
+        },
+        {
+          "info": {
+            "name": "Add members to a team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://public-api.linearb.io/api/v2/teams/:team_id/members",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Add members to a team."
+        },
+        {
+          "info": {
+            "name": "Remove a member from a team.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://public-api.linearb.io/api/v2/teams/:team_id/members/:user_id_or_email",
+            "params": [
+              {
+                "name": "team_id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "user_id_or_email",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Remove a member from a team."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
