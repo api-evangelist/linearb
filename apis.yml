@@ -36,6 +36,8 @@ apis:
   humanURL: https://docs.linearb.io/api-deployments/
   baseURL: https://public-api.linearb.io/api/v1
   tags:
+  - Deployment
+  tags_raw:
   - Deployments
   properties:
   - type: OpenAPI
@@ -148,6 +150,8 @@ apis:
   humanURL: https://docs.linearb.io/api-deployments/
   baseURL: https://public-api.linearb.io/api/v1
   tags:
+  - Team
+  tags_raw:
   - Teams
   properties:
   - type: OpenAPI
