@@ -6,6 +6,18 @@ description: LinearB is a software engineering intelligence (SEI) and developer 
   platform that correlates Git, CI/CD, project management, and incident data into DORA
   and engineering metrics. The LinearB REST API lets teams report deployments, push
   incidents, export measurements, and manage teams and services programmatically.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
