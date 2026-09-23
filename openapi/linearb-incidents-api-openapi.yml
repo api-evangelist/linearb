@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: LinearB Public Deployments Incidents API
+  title: LinearB Public Incidents API
   description: The LinearB public REST API for software engineering intelligence. Report deployments, push and update incidents, export engineering measurements (DORA and developer-productivity metrics), and manage teams and services. All requests are authenticated with an API token passed in the x-api-key request header.
   termsOfService: https://linearb.io/legal/terms-of-service
   contact:
@@ -19,7 +19,7 @@ paths:
       operationId: createIncident
       tags:
       - Incidents
-      summary: Create an incident.
+      summary: Create an incident
       description: Uploads a custom incident report to feed change failure rate and MTTR metrics.
       requestBody:
         required: true
@@ -35,7 +35,7 @@ paths:
       operationId: updateIncident
       tags:
       - Incidents
-      summary: Update an incident.
+      summary: Update an incident
       description: Updates an existing incident identified by its provider id.
       parameters:
       - name: provider_id

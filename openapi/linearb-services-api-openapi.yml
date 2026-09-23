@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: LinearB Public Deployments Services API
+  title: LinearB Public Services API
   description: The LinearB public REST API for software engineering intelligence. Report deployments, push and update incidents, export engineering measurements (DORA and developer-productivity metrics), and manage teams and services. All requests are authenticated with an API token passed in the x-api-key request header.
   termsOfService: https://linearb.io/legal/terms-of-service
   contact:
@@ -19,7 +19,7 @@ paths:
       operationId: listServices
       tags:
       - Services
-      summary: List services.
+      summary: List services
       responses:
         '200':
           description: OK
@@ -27,7 +27,7 @@ paths:
       operationId: createServices
       tags:
       - Services
-      summary: Create services.
+      summary: Create services
       requestBody:
         required: true
         content:
@@ -42,7 +42,7 @@ paths:
       operationId: getService
       tags:
       - Services
-      summary: Get a service.
+      summary: Get a service
       parameters:
       - name: service_id
         in: path
@@ -56,7 +56,7 @@ paths:
       operationId: updateService
       tags:
       - Services
-      summary: Update a service.
+      summary: Update a service
       parameters:
       - name: service_id
         in: path
@@ -76,7 +76,7 @@ paths:
       operationId: deleteService
       tags:
       - Services
-      summary: Delete a service.
+      summary: Delete a service
       parameters:
       - name: service_id
         in: path

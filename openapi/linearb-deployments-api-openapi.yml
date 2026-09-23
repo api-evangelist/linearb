@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: LinearB Public Deployments API
   description: The LinearB public REST API for software engineering intelligence. Report deployments, push and update incidents, export engineering measurements (DORA and developer-productivity metrics), and manage teams and services. All requests are authenticated with an API token passed in the x-api-key request header.
@@ -19,7 +19,7 @@ paths:
       operationId: createDeployment
       tags:
       - Deployments
-      summary: Report a deployment.
+      summary: Report a deployment
       description: Reports a deployment so LinearB can calculate deployment frequency and lead time.
       requestBody:
         required: true
@@ -38,7 +38,7 @@ paths:
       operationId: listDeployments
       tags:
       - Deployments
-      summary: List deployments.
+      summary: List deployments
       description: Returns a paginated list of reported deployments.
       parameters:
       - name: repository_id
@@ -96,11 +96,20 @@ paths:
                 $ref: '#/components/schemas/DeploymentList'
 components:
   schemas:
-    CreateDeploymentResponse:
+    Deployment:
       type: object
       properties:
-        request_id:
+        repository_id:
+          type: integer
+        ref_name:
           type: string
+        commit_sha:
+          type: string
+        stage:
+          type: string
+        published_at:
+          type: string
+          format: date-time
     DeploymentList:
       type: object
       properties:
@@ -110,6 +119,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Deployment'
+    CreateDeploymentResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
     CreateDeploymentRequest:
       type: object
       required:
@@ -134,20 +148,6 @@ components:
           description: The list of LinearB service names (lowercase).
           items:
             type: string
-    Deployment:
-      type: object
-      properties:
-        repository_id:
-          type: integer
-        ref_name:
-          type: string
-        commit_sha:
-          type: string
-        stage:
-          type: string
-        published_at:
-          type: string
-          format: date-time
   securitySchemes:
     apiKeyAuth:
       type: apiKey

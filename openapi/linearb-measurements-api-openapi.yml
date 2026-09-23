@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: LinearB Public Deployments Measurements API
+  title: LinearB Public Measurements API
   description: The LinearB public REST API for software engineering intelligence. Report deployments, push and update incidents, export engineering measurements (DORA and developer-productivity metrics), and manage teams and services. All requests are authenticated with an API token passed in the x-api-key request header.
   termsOfService: https://linearb.io/legal/terms-of-service
   contact:
@@ -19,7 +19,7 @@ paths:
       operationId: getMeasurements
       tags:
       - Measurements
-      summary: Retrieve engineering metrics.
+      summary: Retrieve engineering metrics
       description: Returns engineering metrics for the requested time ranges, grouping, and roll-up. Supported metrics may be aggregated (p50, p75, average).
       requestBody:
         required: true
@@ -35,7 +35,7 @@ paths:
       operationId: exportMeasurements
       tags:
       - Measurements
-      summary: Export engineering metrics.
+      summary: Export engineering metrics
       description: Generates a metrics report and drops it as a CSV or JSON file in cloud storage.
       requestBody:
         required: true
@@ -48,18 +48,6 @@ paths:
           description: OK
 components:
   schemas:
-    TimeRange:
-      type: object
-      required:
-      - after
-      - before
-      properties:
-        after:
-          type: string
-          description: Range start in yyyy-mm-dd format.
-        before:
-          type: string
-          description: Range end in yyyy-mm-dd format, greater than after.
     MeasurementsRequest:
       type: object
       required:
@@ -103,6 +91,18 @@ components:
           - p75
           - avg
           - default
+    TimeRange:
+      type: object
+      required:
+      - after
+      - before
+      properties:
+        after:
+          type: string
+          description: Range start in yyyy-mm-dd format.
+        before:
+          type: string
+          description: Range end in yyyy-mm-dd format, greater than after.
   securitySchemes:
     apiKeyAuth:
       type: apiKey
