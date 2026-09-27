@@ -48,6 +48,22 @@ paths:
           description: OK
 components:
   schemas:
+    RequestedMetric:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: The metric key (for example branch.computed.cycle_time).
+        agg:
+          type: string
+          description: Aggregation method for metrics that support it.
+          enum:
+          - p50
+          - p75
+          - avg
+          - default
     MeasurementsRequest:
       type: object
       required:
@@ -75,22 +91,6 @@ components:
           description: One or more date ranges in yyyy-mm-dd format; multiple ranges require roll_up=custom.
           items:
             $ref: '#/components/schemas/TimeRange'
-    RequestedMetric:
-      type: object
-      required:
-      - name
-      properties:
-        name:
-          type: string
-          description: The metric key (for example branch.computed.cycle_time).
-        agg:
-          type: string
-          description: Aggregation method for metrics that support it.
-          enum:
-          - p50
-          - p75
-          - avg
-          - default
     TimeRange:
       type: object
       required:

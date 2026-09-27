@@ -100,13 +100,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ServiceRepository'
-    CreateServicesRequest:
-      type: object
-      properties:
-        services:
-          type: array
-          items:
-            $ref: '#/components/schemas/Service'
     ServiceRepository:
       type: object
       properties:
@@ -118,6 +111,13 @@ components:
           description: Directory paths within the repository belonging to this service.
           items:
             type: string
+    CreateServicesRequest:
+      type: object
+      properties:
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/Service'
   securitySchemes:
     apiKeyAuth:
       type: apiKey

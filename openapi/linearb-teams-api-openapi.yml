@@ -137,13 +137,6 @@ paths:
           description: OK
 components:
   schemas:
-    CreateTeamsRequest:
-      type: object
-      properties:
-        teams:
-          type: array
-          items:
-            $ref: '#/components/schemas/Team'
     Team:
       type: object
       required:
@@ -162,6 +155,13 @@ components:
           type: string
           description: Hex color code in
           default: '#348B83'
+    CreateTeamsRequest:
+      type: object
+      properties:
+        teams:
+          type: array
+          items:
+            $ref: '#/components/schemas/Team'
   securitySchemes:
     apiKeyAuth:
       type: apiKey
