@@ -32,6 +32,10 @@ accessModel:
   generated: '2026-07-22'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/linearb.png
+x-docs-platform: mkdocs
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-10-03
+x-docs-hosting: github-pages
 tags:
 - Engineering Analytics
 - SEI
@@ -187,6 +191,9 @@ apis:
   - type: Documentation
     url: https://docs.linearb.io/api-overview/
 common:
+- type: CapabilityMap
+  url: capabilities/linearb-capability-edges.yml
+  name: LinearB Business Capability Map
 - type: AgenticAccess
   url: agentic-access/linearb-agentic-access.yml
 - type: TrustCenter
