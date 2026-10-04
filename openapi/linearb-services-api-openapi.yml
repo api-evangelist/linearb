@@ -88,6 +88,13 @@ paths:
           description: OK
 components:
   schemas:
+    CreateServicesRequest:
+      type: object
+      properties:
+        services:
+          type: array
+          items:
+            $ref: '#/components/schemas/Service'
     Service:
       type: object
       required:
@@ -111,13 +118,6 @@ components:
           description: Directory paths within the repository belonging to this service.
           items:
             type: string
-    CreateServicesRequest:
-      type: object
-      properties:
-        services:
-          type: array
-          items:
-            $ref: '#/components/schemas/Service'
   securitySchemes:
     apiKeyAuth:
       type: apiKey

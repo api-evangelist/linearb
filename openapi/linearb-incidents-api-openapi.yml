@@ -54,38 +54,6 @@ paths:
           description: OK
 components:
   schemas:
-    UpdateIncidentRequest:
-      type: object
-      required:
-      - title
-      - issued_at
-      - git_ref
-      properties:
-        title:
-          type: string
-        issued_at:
-          type: string
-          format: date-time
-        git_ref:
-          type: string
-        started_at:
-          type: string
-          format: date-time
-        ended_at:
-          type: string
-          format: date-time
-        teams:
-          type: array
-          items:
-            type: string
-        services:
-          type: array
-          items:
-            type: string
-        repository_urls:
-          type: array
-          items:
-            type: string
     CreateIncidentRequest:
       type: object
       required:
@@ -115,6 +83,38 @@ components:
           format: date-time
         git_ref:
           type: string
+        teams:
+          type: array
+          items:
+            type: string
+        services:
+          type: array
+          items:
+            type: string
+        repository_urls:
+          type: array
+          items:
+            type: string
+    UpdateIncidentRequest:
+      type: object
+      required:
+      - title
+      - issued_at
+      - git_ref
+      properties:
+        title:
+          type: string
+        issued_at:
+          type: string
+          format: date-time
+        git_ref:
+          type: string
+        started_at:
+          type: string
+          format: date-time
+        ended_at:
+          type: string
+          format: date-time
         teams:
           type: array
           items:

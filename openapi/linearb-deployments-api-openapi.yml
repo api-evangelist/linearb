@@ -96,34 +96,6 @@ paths:
                 $ref: '#/components/schemas/DeploymentList'
 components:
   schemas:
-    DeploymentList:
-      type: object
-      properties:
-        total:
-          type: integer
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Deployment'
-    CreateDeploymentResponse:
-      type: object
-      properties:
-        request_id:
-          type: string
-    Deployment:
-      type: object
-      properties:
-        repository_id:
-          type: integer
-        ref_name:
-          type: string
-        commit_sha:
-          type: string
-        stage:
-          type: string
-        published_at:
-          type: string
-          format: date-time
     CreateDeploymentRequest:
       type: object
       required:
@@ -148,6 +120,34 @@ components:
           description: The list of LinearB service names (lowercase).
           items:
             type: string
+    Deployment:
+      type: object
+      properties:
+        repository_id:
+          type: integer
+        ref_name:
+          type: string
+        commit_sha:
+          type: string
+        stage:
+          type: string
+        published_at:
+          type: string
+          format: date-time
+    DeploymentList:
+      type: object
+      properties:
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Deployment'
+    CreateDeploymentResponse:
+      type: object
+      properties:
+        request_id:
+          type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey
