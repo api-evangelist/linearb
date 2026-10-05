@@ -1,0 +1,25 @@
+slug: linearb
+provider: LinearB
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Measurements
+  spec_file: linearb-measurements-api-openapi.yml
+  capability_id: BC-4200.70
+  capability_id_l1: BC-4200
+  capability_name: Engineering Productivity Management
+  confidence: 0.85
+  evidence: POST /api/v2/measurements getMeasurements 'Retrieve engineering metrics'; POST /api/v2/measurements/export
+    'Export engineering metrics'
+  reason: Retrieval and export of DORA and developer-productivity metrics is squarely engineering performance
+    measurement (Engineering Productivity Management).
