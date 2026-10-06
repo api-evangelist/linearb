@@ -43,7 +43,7 @@ tags:
 - DORA Metrics
 - DevOps
 created: '2026-06-21'
-modified: '2026-06-21'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: linearb:linearb-deployments-api
@@ -191,6 +191,8 @@ apis:
   - type: Documentation
     url: https://docs.linearb.io/api-overview/
 common:
+- url: https://linearb.io/blog
+  type: Blog
 - type: CapabilityMap
   url: capabilities/linearb-capability-edges.yml
   name: LinearB Business Capability Map
