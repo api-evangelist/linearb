@@ -1,4 +1,4 @@
-# LinearB (linearb)
+# LinearB
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,159 +66,133 @@
 
 LinearB is a software engineering intelligence (SEI) and developer productivity platform that correlates Git, CI/CD, project management, and incident data into DORA and engineering metrics. The LinearB REST API lets teams report deployments, push incidents, export measurements, and manage teams and services programmatically.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/linearb/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/linearb/refs/heads/main/apis.yml)
+**Areas:** Engineering Analytics · SEI · Developer Productivity · DORA Metrics · DevOps
 
-## Tags
+## LinearB on APIs.io
 
-- Engineering Analytics
-- SEI
-- Developer Productivity
-- DORA Metrics
-- DevOps
+Everything profiled for LinearB is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/linearb/](https://apis.io/providers/linearb/)** — or go straight to one of the APIs or properties below.
 
-## Timestamps
+### APIs (5)
 
-- **Created:** 2026-06-21
-- **Modified:** 2026-06-21
+- [LinearB Deployments API](https://apis.io/apis/linearb/linearb-deployments-api/) — The Deployments API from LinearB — 1 operation(s) for deployments.
+- [LinearB Incidents API](https://apis.io/apis/linearb/linearb-incidents-api/) — The Incidents API from LinearB — 2 operation(s) for incidents.
+- [LinearB Measurements API](https://apis.io/apis/linearb/linearb-measurements-api/) — The Measurements API from LinearB — 2 operation(s) for measurements.
+- [LinearB Services API](https://apis.io/apis/linearb/linearb-services-api/) — The Services API from LinearB — 2 operation(s) for services.
+- [LinearB Teams API](https://apis.io/apis/linearb/linearb-teams-api/) — The Teams API from LinearB — 4 operation(s) for teams.
 
-## APIs
+### Published properties
 
-### LinearB Deployments API
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Report and list software deployments by Git repository and ref so LinearB can calculate deployment frequency, lead time, and other DORA metrics.
+#### MCP servers (1)
 
-- **Human URL:** [https://docs.linearb.io/api-deployments/](https://docs.linearb.io/api-deployments/)
-- **Base URL:** `https://public-api.linearb.io/api/v1`
+Model Context Protocol servers that expose the API to agents.
 
-#### Tags
+- [linearb](https://apis.io/servers/linearb/linearb/)
 
-- Deployments
-- Releases
-- DORA
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Documentation](https://docs.linearb.io/api-deployments/)
-- [API Reference](https://docs.linearb.io/api-overview/)
-- [OpenAPI](openapi/linearb-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/linearb.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/linearb.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Linearb Agentic Access](https://apis.io/agentic-access/linearb/linearb-agentic-access/)
 
-### LinearB Incidents API
+#### Collections (6)
 
-Upload and update custom incident reports from external incident-management tools to feed change failure rate and mean-time-to-restore (MTTR) metrics.
+Postman and Open Collection request collections.
 
-- **Human URL:** [https://docs.linearb.io/api-incidents/](https://docs.linearb.io/api-incidents/)
-- **Base URL:** `https://public-api.linearb.io/api/v1`
+- [LinearB Public API](https://apis.io/collections/linearb/open-linearb/)
+- [LinearB Public Deployments API](https://apis.io/collections/linearb/open-linearb-deployments-api/)
+- [LinearB Public Deployments Incidents API](https://apis.io/collections/linearb/open-linearb-incidents-api/)
+- [LinearB Public Deployments Measurements API](https://apis.io/collections/linearb/open-linearb-measurements-api/)
+- [LinearB Public Deployments Services API](https://apis.io/collections/linearb/open-linearb-services-api/)
+- [LinearB Public Deployments Teams API](https://apis.io/collections/linearb/open-linearb-teams-api/)
 
-#### Tags
+#### Security (3)
 
-- Incidents
-- MTTR
-- Change Failure Rate
+Authentication, trust centre, and vulnerability disclosure.
 
-#### Properties
+- [Linearb Authentication](https://apis.io/security/linearb/linearb-authentication/)
+- [Linearb Domain Security](https://apis.io/security/linearb/linearb-domain-security/)
+- [Linearb Trust Center](https://apis.io/security/linearb/linearb-trust-center/)
 
-- [Documentation](https://docs.linearb.io/api-incidents/)
-- [API Reference](https://docs.linearb.io/api-overview/)
-- [OpenAPI](openapi/linearb-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/linearb.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/linearb.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+#### Plans and pricing (1)
 
-### LinearB Measurements API
+Published plans, tiers and prices.
 
-Retrieve engineering metrics on demand or export them to CSV/JSON, with grouping, roll-up, and aggregation (p50, p75, average) across configurable time ranges.
+- [Linearb Plans Pricing](https://apis.io/plans/linearb/linearb-plans-pricing/)
 
-- **Human URL:** [https://docs.linearb.io/api-measurements-v2/](https://docs.linearb.io/api-measurements-v2/)
-- **Base URL:** `https://public-api.linearb.io/api/v2`
+#### Rate limits (1)
 
-#### Tags
+Published request limits.
 
-- Measurements
-- Metrics
-- Export
+- [Linearb Rate Limits](https://apis.io/rate-limits/linearb/linearb-rate-limits/)
 
-#### Properties
+#### FinOps (1)
 
-- [Documentation](https://docs.linearb.io/api-measurements-v2/)
-- [API Reference](https://docs.linearb.io/api-overview/)
-- [OpenAPI](openapi/linearb-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/linearb.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/linearb.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+What the API costs to run, by operation.
 
-### LinearB Teams API
+- [Linearb Finops](https://apis.io/finops/linearb/linearb-finops/)
 
-Search, create, update, and delete teams and manage their membership via the Teams V2 API, including team hierarchy with parent teams.
+## Where to find this API
 
-- **Human URL:** [https://docs.linearb.io/api-teams-v2/](https://docs.linearb.io/api-teams-v2/)
-- **Base URL:** `https://public-api.linearb.io/api/v2`
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Tags
-
-- Teams
-- Membership
-- Organization
-
-#### Properties
-
-- [Documentation](https://docs.linearb.io/api-teams-v2/)
-- [API Reference](https://docs.linearb.io/api-overview/)
-- [OpenAPI](openapi/linearb-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/linearb.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/linearb.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### LinearB Services API
-
-Create, list, update, and delete services that map repositories and directory paths so metrics and deployments can be attributed at the service level.
-
-- **Human URL:** [https://docs.linearb.io/api-services/](https://docs.linearb.io/api-services/)
-- **Base URL:** `https://public-api.linearb.io/api/v1`
-
-#### Tags
-
-- Services
-- Repositories
-- Catalog
-
-#### Properties
-
-- [Documentation](https://docs.linearb.io/api-services/)
-- [API Reference](https://docs.linearb.io/api-overview/)
-- [OpenAPI](openapi/linearb-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/linearb.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/linearb.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### LinearB Webhooks API
-
-Consume LinearB events to drive WorkerB automations and outbound integrations, enabling event-driven workflows around pull requests, deployments, and incidents.
-
-- **Human URL:** [https://docs.linearb.io/api-overview/](https://docs.linearb.io/api-overview/)
-- **Base URL:** `https://public-api.linearb.io/api/v1`
-
-#### Tags
-
-- Webhooks
-- Events
-- Notifications
-
-#### Properties
-
-- [Documentation](https://docs.linearb.io/api-overview/)
-- [OpenAPI](openapi/linearb-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/linearb.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/linearb.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/linear-b)
-- [LinkedIn](https://www.linkedin.com/company/linearb)
 - [Website](https://linearb.io/)
 - [Documentation](https://docs.linearb.io/api-overview/)
-- [Plans](plans/linearb-plans-pricing.yml)
-- [Rate Limits](rate-limits/linearb-rate-limits.yml)
-- [Fin Ops](finops/linearb-finops.yml)
+- [Blog](https://linearb.io/blog)
+- [GitHub](https://github.com/linear-b)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 29.4** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 68.3 |
+| Contract quality | 49.7 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 32.1 |
+| Access clarity | 15.8 |
+
+**Agent readiness 45.8** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | verified |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | paginated |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/linearb/](https://apis.io/providers/linearb/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for LinearB: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/linearb/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
